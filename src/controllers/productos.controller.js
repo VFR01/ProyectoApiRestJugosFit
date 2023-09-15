@@ -1,9 +1,9 @@
 import { pool } from '../db.js'
 
-export const getEmployees = async (req,res) => {
+export const getProductos = async (req,res) => {
     try{
     throw new Error('Mi Error')
-    const [rows] = await pool.query('SELECT * FROM employee')
+    const [rows] = await pool.query('SELECT * FROM productos')
     res.json(rows)
     } catch (error) {
         return res.status(500).json({
@@ -13,9 +13,9 @@ export const getEmployees = async (req,res) => {
 }
 
 
-export const getEmployee = async (req, res) => {
+export const getProducto = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?', [req.params.id])
+        const [rows] = await pool.query('SELECT * FROM productos WHERE producto_id = ?', [req.params.id])
     
         if(rows.length <= 0) 
         return res.status(404).json({
@@ -29,10 +29,10 @@ export const getEmployee = async (req, res) => {
     }
 };
 
-export const createEmployees = async (req,res) => {
+export const createProductos = async (req,res) => {
     try {
-        const {name, salary} = req.body
-        const [rows] = await pool.query('INSERT INTO employee (name, salary) VALUES (?, ?)',[name, salary]
+        const {producto_id, nombre, descripcion, precio_unitario, stock} = req.body
+        const [rows] = await pool.query('INSERT INTO productos (producto_id, nombre, descripcion, precio_unitario, stock) VALUES (?, ?)',[producto_id, nombre, descripcion, precio_unitario, stock]
         );
         res.send({
             id: rows.insertId,
@@ -46,22 +46,22 @@ export const createEmployees = async (req,res) => {
     }
 };
 
-export const updateEmployees =(req,res) => res.send('Actualizando Empleados')
+export const updateProductos =(req,res) => res.send('Actualizando Productos')
 
-export const updateEmployee = async (req,res) => {
+export const updateProducto = async (req,res) => {
     try{
         const {id} = req.params
-        const {name, salary} = req.body
+        const {producto_id, nombre, descripcion, precio_unitario, stock} = req.body
 
-        const [result] = await pool.query('UPDATE employee SET name = IFNULL(?, name), salary = IFNULL (?, salary) WHERE id = ?', [name, salary, id]
+        const [result] = await pool.query('UPDATE productos SET nombre = IFNULL(?, nombre), descripcion = IFNULL (?, descripcion), precio_unitario = IFNULL(?, precio_unitario), stock = IFNULL(?, stock) WHERE producto_id = ?', [producto_id, nombre, descripcion, precio_unitario, stock]
         );
 
         if(result.affectedRows === 0) 
         return res.status(404).json({
-        message:'Empleados no encontrado',
+        message:'Productos no encontrado',
         });
     
-        const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?', [id,
+        const [rows] = await pool.query('SELECT * FROM productos WHERE producto_id = ?', [producto_id,
         ]);
 
         res.json(rows[0]);
@@ -72,16 +72,16 @@ export const updateEmployee = async (req,res) => {
     }
 };
 
-export const deleteEmployees =(req,res) =>  res.send('Eliminando Empleados')
+export const deleteProductos =(req,res) =>  res.send('Eliminando Productos')
 
-export const deleteEmployee = async (req, res) => {
+export const deleteProducto = async (req, res) => {
     try {
-        const [result]  = await pool.query('DELETE FROM employee WHERE id = ?', [req.params.id,
+        const [result]  = await pool.query('DELETE FROM productos WHERE producto_id = ?', [req.params.id,
         ]);
     
         if(result.affectedRows <= 0) 
         return res.status(404).json({
-            message: 'empleado no encontrado'
+            message: 'producto no encontrado'
         });
         res.sendStatus(204);
     }   catch(error) {

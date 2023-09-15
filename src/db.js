@@ -7,5 +7,5 @@ export const pool = createPool({
     user: 'root',
     password: 'root',
     port: '3306',
-    database: 'companydb'
+    database: 'jugosfit'
 })

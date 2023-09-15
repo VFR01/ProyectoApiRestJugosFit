@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS jugosFit;
 USE jugosFit;
 
 CREATE TABLE usuarios (
-    id_usuarios INT PRIMARY KEY,
+    id_usuarios INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(200),
     apellido VARCHAR (200),
     correo VARCHAR (200),
@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE pedidos (
-    id_pedidos INT PRIMARY KEY,
+    id_pedidos INT AUTO_INCREMENT PRIMARY KEY,
     producto_id INT,
     cantidad INT,
     id_usuarios INT,
@@ -22,7 +22,7 @@ CREATE TABLE pedidos (
 );
 
 CREATE TABLE productos (
-    producto_id INT PRIMARY KEY,
+    producto_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR (200),
     descripcion VARCHAR (250),
     precio_unitario DECIMAL (10, 2),
@@ -30,7 +30,7 @@ CREATE TABLE productos (
 );
 
 CREATE TABLE inventario (
-    id_inventario INT PRIMARY KEY,
+    id_inventario INT AUTO_INCREMENT PRIMARY KEY,
     producto_id INT,
     ifecha_horain DATE,
     ifecha_horaout DATE,
@@ -49,7 +49,7 @@ VALUES
     (80887247, 'Diana', 'Fierro', 'dianafierro@gmail.com', '456123'),
     (51712622, 'Claudia', 'Nuñez', 'claudianuñez@gmail.com', '159263');
 
-INSERT INTO pedidos (id_pedidos,producto_id, cantidad, id_usuario, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega)
+INSERT INTO pedidos (id_pedidos,producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega)
 
 VALUES 
     ( 1, 111, 5, 6000.00, 30000.00, 2023-08-10 9:00:00, 2023-08-10 10:00:00),

@@ -1,9 +1,9 @@
 import { pool } from '../db.js'
 
-export const getEmployees = async (req,res) => {
+export const getUsuarios = async (req,res) => {
     try{
     throw new Error('Mi Error')
-    const [rows] = await pool.query('SELECT * FROM employee')
+    const [rows] = await pool.query('SELECT * FROM usuarios')
     res.json(rows)
     } catch (error) {
         return res.status(500).json({
@@ -13,13 +13,13 @@ export const getEmployees = async (req,res) => {
 }
 
 
-export const getEmployee = async (req, res) => {
+export const getUsuario = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?', [req.params.id])
+        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id_usuarios = ?', [req.params.id])
     
         if(rows.length <= 0) 
         return res.status(404).json({
-            message: 'Empleado no encontrado'
+            message: 'Usuario no encontrado'
         })
         res.json(rows[0])
     }   catch (error) {
@@ -29,15 +29,15 @@ export const getEmployee = async (req, res) => {
     }
 };
 
-export const createEmployees = async (req,res) => {
+export const createUsuarios = async (req,res) => {
     try {
-        const {name, salary} = req.body
-        const [rows] = await pool.query('INSERT INTO employee (name, salary) VALUES (?, ?)',[name, salary]
+        const {id_usuarios, nombre, apellido, correo, contraseña} = req.body
+        const [rows] = await pool.query('INSERT INTO usuarios (id_usuarios, nombre, apellido, correo, contraseña) VALUES (?, ?, ?, ?, ?)',[id_usuarios, nombre, apellido, correo, contraseña]
         );
         res.send({
-            id: rows.insertId,
-            name,
-            salary, 
+            id_usuarios,
+            nombre,
+            apellido, 
         });
     }   catch (error) {
         return res.status(500).json({
@@ -46,14 +46,14 @@ export const createEmployees = async (req,res) => {
     }
 };
 
-export const updateEmployees =(req,res) => res.send('Actualizando Empleados')
+export const updateUsuarios =(req,res) => res.send('Actualizando Usuarios')
 
-export const updateEmployee = async (req,res) => {
+export const updateUsuario = async (req,res) => {
     try{
         const {id} = req.params
-        const {name, salary} = req.body
+        const {id_usuarios, nombre, apellido, correo, contraseña} = req.body
 
-        const [result] = await pool.query('UPDATE employee SET name = IFNULL(?, name), salary = IFNULL (?, salary) WHERE id = ?', [name, salary, id]
+        const [result] = await pool.query('UPDATE employee SET id_usuarios = IFNULL(?, id_usuarios), nombre = IFNULL (?, nombre), apellido = IFNULL (?, apellido), correo = IFNULL (?, correo), contraseña = IFNULL (?, contraseña) WHERE id_usuarios = ?', [id_usuarios, nombre, apellido, correo, contraseña]
         );
 
         if(result.affectedRows === 0) 
@@ -61,7 +61,7 @@ export const updateEmployee = async (req,res) => {
         message:'Empleados no encontrado',
         });
     
-        const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?', [id,
+        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id_usuarios = ?', [id_usuarios,
         ]);
 
         res.json(rows[0]);
@@ -72,16 +72,16 @@ export const updateEmployee = async (req,res) => {
     }
 };
 
-export const deleteEmployees =(req,res) =>  res.send('Eliminando Empleados')
+export const deleteUsuarios =(req,res) =>  res.send('Eliminando usuarios')
 
-export const deleteEmployee = async (req, res) => {
+export const deleteUsuario = async (req, res) => {
     try {
-        const [result]  = await pool.query('DELETE FROM employee WHERE id = ?', [req.params.id,
+        const [result]  = await pool.query('DELETE FROM usuarios WHERE id_usuario = ?', [req.params.id,
         ]);
     
         if(result.affectedRows <= 0) 
         return res.status(404).json({
-            message: 'empleado no encontrado'
+            message: 'usuario no encontrado'
         });
         res.sendStatus(204);
     }   catch(error) {
