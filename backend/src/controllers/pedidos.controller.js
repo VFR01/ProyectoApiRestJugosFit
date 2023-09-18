@@ -2,7 +2,6 @@ import { pool } from '../db.js'
 
 export const getPedidos = async (req,res) => {
     try{
-    throw new Error('Mi Error')
     const [rows] = await pool.query('SELECT * FROM pedidos')
     res.json(rows)
     } catch (error) {
@@ -31,13 +30,18 @@ export const getPedido = async (req, res) => {
 
 export const createPedidos = async (req,res) => {
     try {
-        const {id_pedidos, producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega} = req.body
-        const [rows] = await pool.query('INSERT INTO pedido (id_pedidos, producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',[id_pedidos, producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega]
+        const {producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega} = req.body
+        const [rows] = await pool.query('INSERT INTO pedido (producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega) VALUES (?, ?, ?, ?, ?, ?, ?)',[producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega]
         );
         res.send({
             id: rows.insertId,
-            name,
-            salary, 
+            producto_id,
+            cantidad,
+            id_usuarios,
+            vlr_unitario,
+            vlr_total,
+            fecha_hora_pedido, 
+            fecha_hora_entrega 
         });
     }   catch (error) {
         return res.status(500).json({
@@ -51,9 +55,9 @@ export const updatePedidos =(req,res) => res.send('Actualizando Empleados')
 export const updatePedido = async (req,res) => {
     try{
         const {id} = req.params
-        const {name, salary} = req.body
+        const {producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega} = req.body
 
-        const [result] = await pool.query('UPDATE pedido SET producto_id = IFNULL (?, producto_id), cantidad = IFNULL (?, cantidad), id_usuarios = IFNULL (?, id_usuarios), vlr_unitario = IFNULL (?, vlr_unitario), vlr_total = IFNULL (?, vlr_total), fecha_hora_pedido = IFNULL (?, fecha_hora_pedido), fecha_hora_entrega = IFNULL (?, fecha_hora_entrega) WHERE id_pedidos = ?', [name, salary, id]
+        const [result] = await pool.query('UPDATE pedido SET producto_id = IFNULL (?, producto_id), cantidad = IFNULL (?, cantidad), id_usuarios = IFNULL (?, id_usuarios), vlr_unitario = IFNULL (?, vlr_unitario), vlr_total = IFNULL (?, vlr_total), fecha_hora_pedido = IFNULL (?, fecha_hora_pedido), fecha_hora_entrega = IFNULL (?, fecha_hora_entrega) WHERE id_pedidos = ?', [producto_id, cantidad, id_usuarios, vlr_unitario, vlr_total, fecha_hora_pedido, fecha_hora_entrega]
         );
 
         if(result.affectedRows === 0) 

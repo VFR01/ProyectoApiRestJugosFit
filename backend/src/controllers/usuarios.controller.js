@@ -2,7 +2,6 @@ import { pool } from '../db.js'
 
 export const getUsuarios = async (req,res) => {
     try{
-    throw new Error('Mi Error')
     const [rows] = await pool.query('SELECT * FROM usuarios')
     res.json(rows)
     } catch (error) {
@@ -31,13 +30,15 @@ export const getUsuario = async (req, res) => {
 
 export const createUsuarios = async (req,res) => {
     try {
-        const {id_usuarios, nombre, apellido, correo, contraseña} = req.body
-        const [rows] = await pool.query('INSERT INTO usuarios (id_usuarios, nombre, apellido, correo, contraseña) VALUES (?, ?, ?, ?, ?)',[id_usuarios, nombre, apellido, correo, contraseña]
+        const {nombre, apellido, correo, contraseña} = req.body
+        const [rows] = await pool.query('INSERT INTO usuarios (nombre, apellido, correo, contraseña) VALUES (?, ?, ?, ?)',[nombre, apellido, correo, contraseña]
         );
         res.send({
-            id_usuarios,
+            id: rows.insertId,
             nombre,
-            apellido, 
+            apellido,
+            correo,
+            contraseña 
         });
     }   catch (error) {
         return res.status(500).json({
@@ -51,9 +52,9 @@ export const updateUsuarios =(req,res) => res.send('Actualizando Usuarios')
 export const updateUsuario = async (req,res) => {
     try{
         const {id} = req.params
-        const {id_usuarios, nombre, apellido, correo, contraseña} = req.body
+        const {nombre, apellido, correo, contraseña} = req.body
 
-        const [result] = await pool.query('UPDATE employee SET id_usuarios = IFNULL(?, id_usuarios), nombre = IFNULL (?, nombre), apellido = IFNULL (?, apellido), correo = IFNULL (?, correo), contraseña = IFNULL (?, contraseña) WHERE id_usuarios = ?', [id_usuarios, nombre, apellido, correo, contraseña]
+        const [result] = await pool.query('UPDATE employee SET nombre = IFNULL (?, nombre), apellido = IFNULL (?, apellido), correo = IFNULL (?, correo), contraseña = IFNULL (?, contraseña) WHERE id_usuarios = ?', [nombre, apellido, correo, contraseña]
         );
 
         if(result.affectedRows === 0) 
@@ -61,7 +62,7 @@ export const updateUsuario = async (req,res) => {
         message:'Empleados no encontrado',
         });
     
-        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id_usuarios = ?', [id_usuarios,
+        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id_usuarios = ?', [id,
         ]);
 
         res.json(rows[0]);
