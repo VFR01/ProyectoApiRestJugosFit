@@ -1,7 +1,7 @@
 <!-- Banner SAGA -->
 <div align="center">
-	<img height="200px" src="public/img/logo_green_2023.png" alt="Logo SENA"/>
-  <img height="200px" src="public/img/LogoOficial (1).png" alt="Logo JugosFit"/>
+	<img height="200px" src="backend/public/db/img/logo_green_2023.png" alt="Logo SENA"/>
+  <img height="200px" src="backend/public/db/img/LogoOficial (1).png" alt="Logo JugosFit"/>
 </div>
 <br>
 <div align="center">
