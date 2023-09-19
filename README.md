@@ -28,7 +28,7 @@
 <!-- Información principal -->
 # JF
 
-JF is an educational project aimed at achieving better attendance management. It also includes a section for news and library loans.
+JF is .
 
 <!-- Stack utilizado -->
 ## Tech Stack
