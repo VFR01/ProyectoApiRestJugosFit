@@ -28,7 +28,7 @@
 <!-- Información principal -->
 # JF
 
-JF is .
+JF is a project that is born from the need to help customers develop healthy eating habits. Its goal is to make it reachable so a web app is created aiming at easing current ordering, payment and distribution processes while maintaining a straightforward, friendly and intuitive customer experience.
 
 <!-- Stack utilizado -->
 ## Tech Stack
