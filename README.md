@@ -135,5 +135,5 @@ For production, use:
 <!-- Documentación oficial -->
 ## Official Documentation
 
-[Documentación]()
+[Documentación](https://docs.google.com/document/d/1vqeRvAw-_Yg0sBlGfjgbysQpcyW0DBZP/edit)
 
