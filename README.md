@@ -77,9 +77,6 @@ JF is an educational project aimed at achieving better attendance management. It
   yarn dev
 ```
 
-<div align="center">
-	<img src="./public/img/backend_dev.png" alt="Backend running"/>
-</div>
 
 <br>
 
@@ -113,9 +110,6 @@ JF is an educational project aimed at achieving better attendance management. It
 ```bash
   npm run dev
 ```
-<div align="center">
-	<img src="./public/img/frontend_dev.png" alt="Backend running"/>
-</div>
 
 <br>
 
