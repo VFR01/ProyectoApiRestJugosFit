@@ -1,11 +1,11 @@
 <!-- Banner SAGA -->
 <div align="center">
-	<img height="200px" src="public/img/logo_green_2023.png" alt="Logo SENA"/>
-  <img height="200px" src="" alt="Logo JugosFit"/>
+	<img height="200px" src="backend/public/db/img/logo_green_2023.png" alt="Logo SENA"/>
+  <img height="200px" src="backend/public/db/img/LogoOficial (1).png" alt="Logo JugosFit"/>
 </div>
 <br>
 <div align="center">
-	<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3000&pause=400&color=3BAA35&background=FFFFFF00&center=true&vCenter=true&width=435&lines=Welcome+to+SAGA;A+Node.js+and+React.js+project" alt="Typing SVG SAGA"/>
+	<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=3BCD1C&width=435&lines=JugosFit+Natural+Detox;This+Is+The+Right+Choice+Right+Here" alt="Typing SVG SAGA"/>
 </div>
 <br>
 <div align="center">
@@ -28,7 +28,7 @@
 <!-- Información principal -->
 # JF
 
-JF is an educational project aimed at achieving better attendance management. It also includes a section for news and library loans.
+JF is a project that is born from the need to help customers develop healthy eating habits. Its goal is to make it reachable so a web app is created aiming at easing current ordering, payment and distribution processes while maintaining a straightforward, friendly and intuitive customer experience.
 
 <!-- Stack utilizado -->
 ## Tech Stack
@@ -77,9 +77,6 @@ JF is an educational project aimed at achieving better attendance management. It
   yarn dev
 ```
 
-<div align="center">
-	<img src="./public/img/backend_dev.png" alt="Backend running"/>
-</div>
 
 <br>
 
@@ -113,9 +110,6 @@ JF is an educational project aimed at achieving better attendance management. It
 ```bash
   npm run dev
 ```
-<div align="center">
-	<img src="./public/img/frontend_dev.png" alt="Backend running"/>
-</div>
 
 <br>
 
@@ -141,5 +135,5 @@ For production, use:
 <!-- Documentación oficial -->
 ## Official Documentation
 
-[Documentación]()
+[Documentación](https://docs.google.com/document/d/1vqeRvAw-_Yg0sBlGfjgbysQpcyW0DBZP/edit)
 
